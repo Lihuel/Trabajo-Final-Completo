@@ -1,0 +1,20 @@
+{% extends 'noticias/index.html' %}
+
+{% block title %}
+    Informacion de la Noticia
+{% endblock title %}
+
+{% block content_noticias %}
+    <ul>
+        <li>{{ object.titulo }}</li>
+        <li>{{ object.texto }}</li>
+        <li>La noticia fue Creada el dia : {{ object.date }}</li>
+      
+    </ul>
+
+    {% url 'noticias:noticias_list' as url %}
+    {% include 'home/index_back.html' with link=url %}
+    {% url 'home:index' as url %}
+    {% include 'home/index_inicio.html' with link=url %}
+
+{% endblock content_noticias %}

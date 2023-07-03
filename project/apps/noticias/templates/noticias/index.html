@@ -1,13 +1,15 @@
 {% extends 'home/base.html' %}
-
-
 {% block content %}
-  <h1>-Ultimas Noticias-</h1>  
+<h3 class="shadow-lg text-center">
+  {% block title %}
+ -Ultimas Noticias-
+  {% endblock title %}
+ </h3>
+ {% block content_noticias %}
   {% if user.is_authenticated %}
-  <div class="text-center">
-  <a class="btn btn-primary btn-lg text-center " href="{% url 'noticias:crearnoticia' %}"> Crear Noticia </a> 
-  </div>
+  <a class="btn btn-primary btn-lg text-center " href="{% url 'noticias:noticias_create' %}"> Crear Noticia </a> <br>
+  <a class="btn btn-primary btn-lg text-center " href="{% url 'noticias:noticias_list' %}"> Ver las ultimas Noticias</a> <br>
   {% endif %}
-  {% url 'home:index' as url %}
-  {% include 'home/index_inicio.html' with link=url %}
+  <a class="btn btn-primary btn-lg" href="{% url 'home:index' %}">Volver a inicio </a>
+{% endblock content_noticias %}
 {% endblock content %}

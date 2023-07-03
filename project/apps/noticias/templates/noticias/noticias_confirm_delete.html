@@ -1,0 +1,19 @@
+{% extends 'noticias/index.html' %}
+
+{% block title %}
+    Eliminacion de Noticia
+{% endblock title %}
+
+{% block content_noticias %}
+    <p class="fs-5 fst-italic">¿Confirmas eliminar la siguiente Noticia "{{ object }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div  class="text-center">
+            <button type="submit" class="btn btn-danger btn-lg">Confirmar</button>
+        </div>
+    </form>
+    {% url 'noticias:noticias_list' as url %}
+    {% include 'home/index_back.html' with link=url %}
+    {% url 'home:index' as url %}
+    {% include 'home/index_inicio.html' with link=url %}
+{% endblock content_noticias %}

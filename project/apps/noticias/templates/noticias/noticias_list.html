@@ -1,0 +1,45 @@
+{% extends 'noticias/list.html' %}
+
+{% block title %}
+    Lista de Noticias
+{% endblock title %}
+
+{% block search %}
+    <div class="py-lg-4">
+        <form action="{% url 'noticias:noticias_list' %}" method="get">
+            <input name="consulta" type="text" placeholder="Buscar...">
+        </form>
+    </div>
+{% endblock search %}
+ 
+{% block table_header %}
+    <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+
+    </tr>
+{% endblock table_header %}
+{% block table_body %}
+    {% for noticias in object_list %}
+        <tr>
+            <td>{{ noticias.titulo }}</td>
+            <td>{{ noticias.date }}</td>
+
+            <td>{% if user.is_authenticated %}
+                <a href="{% url 'noticias:noticias_detail' noticias.id %}"                                     
+                   class="btn btn-primary btn-lg">Ver detalle</a>
+                   {% endif %}
+            </td>
+            <td>{% if user.is_authenticated %}
+                <a href="{% url 'noticias:noticias_update' noticias.id %}"
+                   class="btn btn-success btn-lg">Actualizar</a> 
+                   {% endif %}
+            </td>
+            <td> {% if user.is_staff %}
+                <a href="{% url 'noticias:noticias_delete' noticias.id %}"
+                  class="btn btn-danger btn-lg" >Eliminar</a>
+                  {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}

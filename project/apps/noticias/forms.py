@@ -1,7 +1,7 @@
 from django import forms
 from . import models
 
-class NoticiaForm(forms.ModelForm):
+class NoticiasForm(forms.ModelForm):
     class Meta:
-        model = models.Noticia
+        model = models.Noticias
         fields = '__all__'

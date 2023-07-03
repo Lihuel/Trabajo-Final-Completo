@@ -1,14 +1,18 @@
 from django.db import models
 from datetime import datetime
+from django.contrib import admin
+
+admin.site.site_title = "Noticias"
+admin.site.site_header = "La Liga de Fútbol"
 
 
-class Noticia(models.Model):
+class Noticias(models.Model):
     titulo = models.CharField(max_length=100)
     texto = models.TextField()
     date = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
-        return self.titulo
+        return f"{self.titulo} creada el dia {self.date}" 
     
     class meta:
         verbose_name = 'Noticia'
